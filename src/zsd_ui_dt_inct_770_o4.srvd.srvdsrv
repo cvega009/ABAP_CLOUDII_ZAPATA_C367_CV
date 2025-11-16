@@ -1,0 +1,6 @@
+@EndUserText.label: 'Service Definition Incidents'
+define service ZSD_UI_DT_INCT_770_O4
+  provider contracts odata_v4_ui {
+  expose ZC_DT_INCT_770   as Incidents;
+  expose ZC_DT_INCT_H_770 as History;
+}

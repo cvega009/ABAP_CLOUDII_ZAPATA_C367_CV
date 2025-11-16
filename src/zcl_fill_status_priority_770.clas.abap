@@ -10,7 +10,11 @@ CLASS zcl_fill_status_priority_770 DEFINITION
   PRIVATE SECTION.
 ENDCLASS.
 
-CLASS zcl_fill_status_priority_770 IMPLEMENTATION.
+
+
+CLASS ZCL_FILL_STATUS_PRIORITY_770 IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
     DELETE FROM zdt_status_770.
     DELETE FROM zdt_priority_770.
