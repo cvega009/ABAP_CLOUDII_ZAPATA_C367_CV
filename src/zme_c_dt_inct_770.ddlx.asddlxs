@@ -58,7 +58,7 @@ annotate view ZC_DT_INCT_770 with
   Description;
 
   @Consumption.valueHelpDefinition: [ {
-    entity.name: 'zdd_status_vh_lgl',
+    entity.name: 'zdd_status_vh_770',
     entity.element: 'StatusCode',
     useForValidation: true
   } ]
@@ -69,7 +69,7 @@ annotate view ZC_DT_INCT_770 with
   Status;
 
   @Consumption.valueHelpDefinition: [ {
-    entity.name: 'zdd_priority_vh_lgl',
+    entity.name: 'zdd_priority_vh_770',
     entity.element: 'PriorityCode',
     useForValidation: true
   } ]
