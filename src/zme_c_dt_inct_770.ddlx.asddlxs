@@ -65,7 +65,8 @@ annotate view ZC_DT_INCT_770 with
   @UI: {lineItem: [{ position: 50,
                importance: #LOW }],
   identification: [{ position: 50  } ],
-  selectionField: [{ position: 50 }]}
+  selectionField: [{ position: 50 }],
+  textArrangement: #TEXT_LAST }
   Status;
 
   @Consumption.valueHelpDefinition: [ {
@@ -76,7 +77,8 @@ annotate view ZC_DT_INCT_770 with
   @UI: {lineItem: [{ position: 60,
                importance: #LOW }],
   identification: [{ position: 60  } ],
-  selectionField: [{ position: 60 }]}
+  selectionField: [{ position: 60 }],
+  textArrangement: #TEXT_LAST}
   Priority;
 
   @UI: {lineItem: [{ position: 70,

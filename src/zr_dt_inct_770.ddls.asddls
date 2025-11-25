@@ -3,7 +3,13 @@
 @EndUserText.label: 'Incident Root View'
 define root view entity ZR_DT_INCT_770
   as select from zdt_inct_770
-  composition [0..*] of ZDD_INCT_H_770 as _History
+  composition [0..*] of ZDD_INCT_H_770      as _History
+
+
+  association [0..1] to ZDD_STATUS_VH_770   as _Status   on $projection.Status = _Status.StatusCode
+  association [0..1] to ZDD_PRIORITY_VH_770 as _Priority on $projection.Priority = _Priority.PriorityCode
+
+
 {
   key inc_uuid              as IncUUID,
       incident_id           as IncidentID,
@@ -25,6 +31,8 @@ define root view entity ZR_DT_INCT_770
       last_changed_at       as LastChangedAt,
 
       //  Associations
-      _History
+      _History,
 
+      _Status,
+      _Priority
 }

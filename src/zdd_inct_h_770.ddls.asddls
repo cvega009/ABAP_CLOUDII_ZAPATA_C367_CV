@@ -8,8 +8,12 @@
     dataClass: #MIXED
 }
 define view entity ZDD_INCT_H_770
-  as select from zdt_inct_h_lgl
-  association to parent ZR_DT_INCT_770 as _Incident on $projection.IncUUID = _Incident.IncUUID
+  as select from zdt_inct_h_770
+  association        to parent ZR_DT_INCT_770 as _Incident on $projection.IncUUID = _Incident.IncUUID
+
+  association [0..1] to ZDD_STATUS_VH_770     as _StatusPS on $projection.PreviousStatus = _StatusPS.StatusCode
+  association [0..1] to ZDD_STATUS_VH_770     as _StatusNS on $projection.NewStatus = _StatusNS.StatusCode
+
 {
   key his_uuid              as HisUUID,
   key inc_uuid              as IncUUID,
@@ -23,5 +27,8 @@ define view entity ZDD_INCT_H_770
       local_last_changed_at as LocalLastChangedAt,
       last_changed_at       as LastChangedAt,
       //  Associations
-      _Incident
+      _Incident,
+
+      _StatusPS,
+      _StatusNS
 }

@@ -3,7 +3,8 @@
 {
 "FROM":
 [
-"ZDD_INCT_H_770"
+"ZDD_INCT_H_770",
+"ZDD_STATUS_VH_770"
 ],
 "ASSOCIATED":
 [

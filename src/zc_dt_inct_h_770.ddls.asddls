@@ -7,8 +7,15 @@ define view entity ZC_DT_INCT_H_770
   key HisUUID,
   key IncUUID,
       HisID,
+
+      @ObjectModel.text.element: [ 'StatusDescriptionPS' ]
       PreviousStatus,
+      _StatusPS.StatusDescription as StatusDescriptionPS,
+
+      @ObjectModel.text.element: [ 'StatusDescriptionNS' ]
       NewStatus,
+      _StatusNS.StatusDescription as StatusDescriptionNS,
+
       Text,
       LocalCreatedBy,
       LocalCreatedAt,
