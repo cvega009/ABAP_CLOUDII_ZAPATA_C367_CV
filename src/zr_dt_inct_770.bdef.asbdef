@@ -41,8 +41,11 @@ authorization master ( global, instance )
 
   internal action setHistory;
 
-  determination setDefaultHistory on save { create; }
+  //Validaciones
+  validation validateData on save { create; field Title, Description, Priority, Status, CreationDate; }
+  validation validateDataRange on save {  create; field CreationDate, ChangedDate; }
 
+  determination setDefaultHistory on save { create; }
   determination setDefaultValues on modify { create; }
 
   draft action Activate optimized;

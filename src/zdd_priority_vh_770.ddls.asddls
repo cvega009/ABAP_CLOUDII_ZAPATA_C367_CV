@@ -9,7 +9,7 @@
 @VDM.viewType: #COMPOSITE
 @Search.searchable: true
 define view entity ZDD_PRIORITY_VH_770
-  as select from zdt_priority_lgl
+  as select from zdt_priority_770
 {
       @ObjectModel.text.element:['PriorityDescription']
   key priority_code        as PriorityCode,

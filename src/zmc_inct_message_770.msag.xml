@@ -20,23 +20,28 @@
    <T100_TEXTS>
     <item>
      <SPRSL>E</SPRSL>
+     <MSGNR>000</MSGNR>
+     <TEXT>TITLE is initial</TEXT>
+    </item>
+    <item>
+     <SPRSL>E</SPRSL>
      <MSGNR>001</MSGNR>
-     <TEXT>CustomerID  &amp;1 is unknown.</TEXT>
+     <TEXT>DESCRIPTION is initial</TEXT>
     </item>
     <item>
      <SPRSL>E</SPRSL>
      <MSGNR>002</MSGNR>
-     <TEXT>Agency &amp;1 is unknown.</TEXT>
+     <TEXT>PRIORITY is initial</TEXT>
     </item>
     <item>
      <SPRSL>E</SPRSL>
      <MSGNR>003</MSGNR>
-     <TEXT>Begin Date &amp;1 must not be after End Date &amp;2 .</TEXT>
+     <TEXT>STATUS is initial</TEXT>
     </item>
     <item>
      <SPRSL>E</SPRSL>
      <MSGNR>004</MSGNR>
-     <TEXT>Begin Date &amp;1 must be on or after system date.</TEXT>
+     <TEXT>CREATION_DATE is initial</TEXT>
     </item>
     <item>
      <SPRSL>E</SPRSL>
@@ -46,107 +51,7 @@
     <item>
      <SPRSL>E</SPRSL>
      <MSGNR>006</MSGNR>
-     <TEXT>Invalid discount: Enter a number between 1 an 100.</TEXT>
-    </item>
-    <item>
-     <SPRSL>E</SPRSL>
-     <MSGNR>007</MSGNR>
-     <TEXT>Enter a BeginDate.</TEXT>
-    </item>
-    <item>
-     <SPRSL>E</SPRSL>
-     <MSGNR>008</MSGNR>
-     <TEXT>Enter an EndDate.</TEXT>
-    </item>
-    <item>
-     <SPRSL>E</SPRSL>
-     <MSGNR>009</MSGNR>
-     <TEXT>Enter an Agency ID.</TEXT>
-    </item>
-    <item>
-     <SPRSL>E</SPRSL>
-     <MSGNR>010</MSGNR>
-     <TEXT>Enter a Customer ID.</TEXT>
-    </item>
-    <item>
-     <SPRSL>E</SPRSL>
-     <MSGNR>011</MSGNR>
-     <TEXT>Enter a ConnectionID.</TEXT>
-    </item>
-    <item>
-     <SPRSL>E</SPRSL>
-     <MSGNR>012</MSGNR>
-     <TEXT>No Flight &amp;1 for FlightDate &amp;2.</TEXT>
-    </item>
-    <item>
-     <SPRSL>E</SPRSL>
-     <MSGNR>013</MSGNR>
-     <TEXT>Product ID is unknown.</TEXT>
-    </item>
-    <item>
-     <SPRSL>E</SPRSL>
-     <MSGNR>014</MSGNR>
-     <TEXT>Enter a ProductID.</TEXT>
-    </item>
-    <item>
-     <SPRSL>E</SPRSL>
-     <MSGNR>015</MSGNR>
-     <TEXT>Booking status not valid for BookingID &amp;1.</TEXT>
-    </item>
-    <item>
-     <SPRSL>E</SPRSL>
-     <MSGNR>016</MSGNR>
-     <TEXT>Enter an AirlineID.</TEXT>
-    </item>
-    <item>
-     <SPRSL>E</SPRSL>
-     <MSGNR>017</MSGNR>
-     <TEXT>Enter a FlightDate.</TEXT>
-    </item>
-    <item>
-     <SPRSL>E</SPRSL>
-     <MSGNR>018</MSGNR>
-     <TEXT>Not enough keys for all instances.</TEXT>
-    </item>
-    <item>
-     <SPRSL>E</SPRSL>
-     <MSGNR>019</MSGNR>
-     <TEXT>Number range object almost depleted.</TEXT>
-    </item>
-    <item>
-     <SPRSL>E</SPRSL>
-     <MSGNR>020</MSGNR>
-     <TEXT>You are not authorized to perform this activity.</TEXT>
-    </item>
-    <item>
-     <SPRSL>E</SPRSL>
-     <MSGNR>021</MSGNR>
-     <TEXT>You are not authorized to perform this activity.</TEXT>
-    </item>
-    <item>
-     <SPRSL>E</SPRSL>
-     <MSGNR>022</MSGNR>
-     <TEXT>Please enter a currency code.</TEXT>
-    </item>
-    <item>
-     <SPRSL>E</SPRSL>
-     <MSGNR>023</MSGNR>
-     <TEXT>Currency code &amp;1 does not exist.  Please enter a valid currency code.</TEXT>
-    </item>
-    <item>
-     <SPRSL>E</SPRSL>
-     <MSGNR>024</MSGNR>
-     <TEXT>Booking Fee is not valid.</TEXT>
-    </item>
-    <item>
-     <SPRSL>E</SPRSL>
-     <MSGNR>025</MSGNR>
-     <TEXT>Flight Price is not valid.</TEXT>
-    </item>
-    <item>
-     <SPRSL>E</SPRSL>
-     <MSGNR>026</MSGNR>
-     <TEXT>Supplement Price is not valid.</TEXT>
+     <TEXT>CHANGEDDATE &amp;1 is not valid.</TEXT>
     </item>
    </T100_TEXTS>
   </asx:values>

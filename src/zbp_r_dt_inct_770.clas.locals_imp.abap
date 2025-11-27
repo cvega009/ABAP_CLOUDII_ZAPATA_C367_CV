@@ -30,6 +30,10 @@ CLASS lhc_Incident DEFINITION INHERITING FROM cl_abap_behavior_handler.
 
     METHODS setDefaultHistory FOR DETERMINE ON SAVE
       IMPORTING keys FOR Incident~setDefaultHistory.
+    METHODS validateData FOR VALIDATE ON SAVE
+      IMPORTING keys FOR Incident~validateData.
+    METHODS validateDataRange FOR VALIDATE ON SAVE
+      IMPORTING keys FOR Incident~validateDataRange.
 
     METHODS get_history_index EXPORTING ev_incuuid      TYPE sysuuid_x16
                               RETURNING VALUE(rv_index) TYPE zde_his_id_770.
@@ -318,6 +322,128 @@ CLASS lhc_Incident IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD get_global_authorizations.
+  ENDMETHOD.
+
+  METHOD validateData.
+
+
+    READ ENTITIES OF zr_dt_inct_770 IN LOCAL MODE
+         ENTITY Incident
+         FIELDS ( Title Description Priority Status CreationDate )
+         WITH CORRESPONDING #( keys )
+         RESULT DATA(incidents).
+
+
+    LOOP AT incidents INTO DATA(incident).
+
+      IF incident-Title IS INITIAL.
+        APPEND VALUE #( %tky = incident-%tky ) TO failed-incident.
+
+        APPEND VALUE #( %tky        = incident-%tky
+                        %msg = NEW zcl_incident_messages_770( textid   = zcl_incident_messages_770=>title_initial
+                                                            severity = if_abap_behv_message=>severity-error )
+                                                            %state_area = 'VALIDATE_COMPONENT'
+                        %element-Title = if_abap_behv=>mk-on
+                               ) TO reported-incident.
+
+      ENDIF.
+
+      IF incident-Description IS INITIAL.
+        APPEND VALUE #( %tky = incident-%tky ) TO failed-incident.
+
+        APPEND VALUE #( %tky        = incident-%tky
+                        %msg = NEW zcl_incident_messages_770( textid   = zcl_incident_messages_770=>description_initial
+                                                            severity = if_abap_behv_message=>severity-error )
+                                                            %state_area = 'VALIDATE_COMPONENT'
+                        %element-Title = if_abap_behv=>mk-on
+                               ) TO reported-incident.
+
+      ENDIF.
+
+      IF incident-Priority IS INITIAL.
+        APPEND VALUE #( %tky = incident-%tky ) TO failed-incident.
+
+        APPEND VALUE #( %tky        = incident-%tky
+                        %msg = NEW zcl_incident_messages_770( textid   = zcl_incident_messages_770=>priority_initial
+                                                            severity = if_abap_behv_message=>severity-error )
+                                                            %state_area = 'VALIDATE_COMPONENT'
+                        %element-Title = if_abap_behv=>mk-on
+                               ) TO reported-incident.
+
+      ENDIF.
+
+      IF incident-Status IS INITIAL.
+        APPEND VALUE #( %tky = incident-%tky ) TO failed-incident.
+
+        APPEND VALUE #( %tky        = incident-%tky
+                        %msg = NEW zcl_incident_messages_770( textid   = zcl_incident_messages_770=>status_initial
+                                                            severity = if_abap_behv_message=>severity-error )
+                                                            %state_area = 'VALIDATE_COMPONENT'
+                        %element-Title = if_abap_behv=>mk-on
+                               ) TO reported-incident.
+
+      ENDIF.
+
+      IF incident-CreationDate IS INITIAL.
+        APPEND VALUE #( %tky = incident-%tky ) TO failed-incident.
+
+        APPEND VALUE #( %tky        = incident-%tky
+                        %msg = NEW zcl_incident_messages_770( textid   = zcl_incident_messages_770=>creationdate_initial
+                                                            severity = if_abap_behv_message=>severity-error )
+                                                            %state_area = 'VALIDATE_DATES'
+                        %element-Title = if_abap_behv=>mk-on
+                               ) TO reported-incident.
+
+      ENDIF.
+
+    ENDLOOP.
+
+  ENDMETHOD.
+
+  METHOD validateDataRange.
+
+    READ ENTITIES OF zr_dt_inct_770 IN LOCAL MODE
+           ENTITY Incident
+           FIELDS ( CreationDate ChangedDate )
+           WITH CORRESPONDING #( keys )
+           RESULT DATA(incidents).
+
+    LOOP AT incidents INTO DATA(incident).
+
+      IF incident-CreationDate IS INITIAL.
+        APPEND VALUE #( %tky = incident-%tky ) TO failed-incident.
+
+        APPEND VALUE #( %tky        = incident-%tky
+                        %msg = NEW zcl_incident_messages_770( textid   = zcl_incident_messages_770=>creationdate_initial
+                                                            severity = if_abap_behv_message=>severity-error )
+                                                            %state_area = 'VALIDATE_DATES'
+                        %element-Title = if_abap_behv=>mk-on
+                               ) TO reported-incident.
+
+      ENDIF.
+
+
+      IF incident-ChangedDate < incident-CreationDate AND
+         incident-ChangedDate IS NOT INITIAL AND
+         incident-CreationDate IS NOT INITIAL.
+
+        APPEND VALUE #( %tky = incident-%tky ) TO failed-incident.
+
+        APPEND VALUE #( %tky = incident-%tky
+                        %state_area = 'VALIDATE_DATES'
+                        %msg = NEW zcl_incident_messages_770( textid      = zcl_incident_messages_770=>ChangedDate_invalid
+                                                            ChangedDate    = incident-ChangedDate
+                                                            severity    = if_abap_behv_message=>severity-error )
+                        %element-ChangedDate = if_abap_behv=>mk-on
+                          ) TO reported-incident.
+
+      ENDIF.
+
+
+
+    ENDLOOP.
+
+
   ENDMETHOD.
 
 ENDCLASS.

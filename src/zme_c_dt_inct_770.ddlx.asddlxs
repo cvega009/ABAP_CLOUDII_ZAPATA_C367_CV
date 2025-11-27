@@ -2,7 +2,7 @@
 @UI: { headerInfo: { typeName:       'Incident',
                      typeNamePlural: 'Incidents',
                      title:          { type: #STANDARD,
-                                       label: 'Incidents',
+                                       label: 'Incident',
                                        value: 'IncidentID' } },
              presentationVariant: [{ sortOrder: [{ by: 'IncidentID',
                                           direction: #ASC }],

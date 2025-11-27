@@ -9,7 +9,7 @@
 @VDM.viewType: #COMPOSITE
 @Search.searchable: true
 define view entity ZDD_STATUS_VH_770
-  as select from zdt_status_lgl
+  as select from zdt_status_770
 {
       @ObjectModel.text.element:['StatusDescription']
   key status_code        as StatusCode,
