@@ -29,24 +29,42 @@ authorization master ( global, instance )
   field ( numbering : managed )
   IncUUID;
 
-  field ( mandatory )
-  title,
-  Description,
-  Priority;
+  //Campos obligatorios
+//  field ( mandatory ) title, Description, Priority;
+//field ( mandatory ) title, Description, Priority; //Obligatorio en create
+//field ( readonly:update ) title, Description, Priority;  //Solo lectura en update
+
+field ( mandatory ) title, description, priority;
+
 
   action ( features : instance, authorization : update ) changeStatus
     parameter zdd_change_status_param_770 result [1] $self;
 
-  side effects { action changeStatus affects $self; }
-
   internal action setHistory;
 
-  //Validaciones
+  //Validaciones - Validación en Múltiples Campos
   validation validateData on save { create; field Title, Description, Priority, Status, CreationDate; }
-  validation validateDataRange on save {  create; field CreationDate, ChangedDate; }
+  validation validateDataRange on save { create; field CreationDate, ChangedDate; }
+
+  ////Validación en la Acción
+  determine action validateDataDA { validation validateData; }
+  determine action validateDataRangeDA { validation validateDataRange; }
 
   determination setDefaultHistory on save { create; }
   determination setDefaultValues on modify { create; }
+
+  //Efectos secundarios
+  side effects
+  {
+    action changeStatus affects $self;
+
+    determine action validateDataDA
+    executed on field Title, field Description, field Priority, field Status, field CreationDate
+    affects messages;
+
+    determine action validateDataRangeDA executed on field CreationDate, field ChangedDate affects messages;
+  }
+
 
   draft action Activate optimized;
   draft action Discard;

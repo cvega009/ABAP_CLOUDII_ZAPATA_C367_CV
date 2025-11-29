@@ -74,8 +74,18 @@ CLASS zcl_incident_messages_770 DEFINITION
         attr2 TYPE scx_attrname VALUE '',
         attr3 TYPE scx_attrname VALUE '',
         attr4 TYPE scx_attrname VALUE '',
-      END OF ChangedDate_invalid.
-*
+      END OF ChangedDate_invalid,
+
+      BEGIN OF CreationDate_invalid,
+        msgid TYPE symsgid VALUE 'ZMC_INCT_MESSAGE_770',
+        msgno TYPE symsgno VALUE '007',
+        attr1 TYPE scx_attrname VALUE '',
+        attr2 TYPE scx_attrname VALUE '',
+        attr3 TYPE scx_attrname VALUE '',
+        attr4 TYPE scx_attrname VALUE '',
+      END OF CreationDate_invalid.
+
+
 *      BEGIN OF enter_end_date,
 *        msgid TYPE symsgid VALUE 'ZMC_INCT_MESSAGE_770',
 *        msgno TYPE symsgno VALUE '008',

@@ -21,27 +21,27 @@
     <item>
      <SPRSL>E</SPRSL>
      <MSGNR>000</MSGNR>
-     <TEXT>TITLE is initial</TEXT>
+     <TEXT>Ingrese un título</TEXT>
     </item>
     <item>
      <SPRSL>E</SPRSL>
      <MSGNR>001</MSGNR>
-     <TEXT>DESCRIPTION is initial</TEXT>
+     <TEXT>Ingrese la descripción del incidente</TEXT>
     </item>
     <item>
      <SPRSL>E</SPRSL>
      <MSGNR>002</MSGNR>
-     <TEXT>PRIORITY is initial</TEXT>
+     <TEXT>Ingrese la prioridad del incidente</TEXT>
     </item>
     <item>
      <SPRSL>E</SPRSL>
      <MSGNR>003</MSGNR>
-     <TEXT>STATUS is initial</TEXT>
+     <TEXT>El estatus del incidente es inicial</TEXT>
     </item>
     <item>
      <SPRSL>E</SPRSL>
      <MSGNR>004</MSGNR>
-     <TEXT>CREATION_DATE is initial</TEXT>
+     <TEXT>La fecha de creación es inicial</TEXT>
     </item>
     <item>
      <SPRSL>E</SPRSL>
@@ -51,7 +51,12 @@
     <item>
      <SPRSL>E</SPRSL>
      <MSGNR>006</MSGNR>
-     <TEXT>CHANGEDDATE &amp;1 is not valid.</TEXT>
+     <TEXT>La actualización de fecha es inválida</TEXT>
+    </item>
+    <item>
+     <SPRSL>E</SPRSL>
+     <MSGNR>007</MSGNR>
+     <TEXT>La fecha de creación no puede ser una fecha futura</TEXT>
     </item>
    </T100_TEXTS>
   </asx:values>

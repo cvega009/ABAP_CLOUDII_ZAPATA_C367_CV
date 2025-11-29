@@ -113,18 +113,41 @@ CLASS lhc_Incident IMPLEMENTATION.
         lv_wrong_status = lv_status.
 * Customize error messages
         APPEND VALUE #( %tky = <incident>-%tky
-                        %msg = NEW zcl_incident_messages_770( textid = zcl_incident_messages_770=>status_invalid
-                                                            status = lv_wrong_status
-                                                            severity = if_abap_behv_message=>severity-error )
+                        %msg = NEW zcl_incident_messages_770( textid   = zcl_incident_messages_770=>status_invalid
+                                                              status   = lv_wrong_status
+                                                              severity = if_abap_behv_message=>severity-error )
+                        %state_area = 'VALIDATE_COMPONENT'
+                         ) TO reported-incident.
+        lv_error = abap_true.
+        EXIT.
+
+      ELSEIF
+*      //Para un incidente con estatus Canceled (CN), Completed (CO) o Closed (CL), ya no es posible cambiar el estatus.
+         <incident>-Status EQ mc_status-canceled  OR
+         <incident>-Status EQ mc_status-completed OR
+         <incident>-Status EQ mc_status-closed.
+** Set authorizations
+        APPEND VALUE #( %tky = <incident>-%tky ) TO failed-incident.
+
+        lv_wrong_status = lv_status.
+* Customize error messages
+        APPEND VALUE #( %tky = <incident>-%tky
+                        %msg = NEW zcl_incident_messages_770( textid   = zcl_incident_messages_770=>status_invalid
+                                                              status   = lv_wrong_status
+                                                              severity = if_abap_behv_message=>severity-error )
                         %state_area = 'VALIDATE_COMPONENT'
                          ) TO reported-incident.
         lv_error = abap_true.
         EXIT.
       ENDIF.
 
-      APPEND VALUE #( %tky = <incident>-%tky
+      APPEND VALUE #( %tky        = <incident>-%tky
                       ChangedDate = cl_abap_context_info=>get_system_date( )
-                      Status = lv_status ) TO lt_updated_root_entity.
+                      Status      = lv_status
+*                      Title       = <incident>-Title
+*                      Description = <incident>-Description
+*                      Priority    = <incident>-Priority
+                      ) TO lt_updated_root_entity.
 
 ** Get Text
       lv_text = keys[ KEY id %tky = <incident>-%tky ]-%param-text.
@@ -265,7 +288,11 @@ CLASS lhc_Incident IMPLEMENTATION.
     READ ENTITIES OF zr_dt_inct_770 IN LOCAL MODE
      ENTITY Incident
      FIELDS ( CreationDate
-              Status ) WITH CORRESPONDING #( keys )
+              Status
+*              Title
+*              Description
+*              Priority
+              ) WITH CORRESPONDING #( keys )
      RESULT DATA(incidents).
 
 ** This important for logic
@@ -355,7 +382,7 @@ CLASS lhc_Incident IMPLEMENTATION.
                         %msg = NEW zcl_incident_messages_770( textid   = zcl_incident_messages_770=>description_initial
                                                             severity = if_abap_behv_message=>severity-error )
                                                             %state_area = 'VALIDATE_COMPONENT'
-                        %element-Title = if_abap_behv=>mk-on
+                        %element-Description = if_abap_behv=>mk-on
                                ) TO reported-incident.
 
       ENDIF.
@@ -367,7 +394,7 @@ CLASS lhc_Incident IMPLEMENTATION.
                         %msg = NEW zcl_incident_messages_770( textid   = zcl_incident_messages_770=>priority_initial
                                                             severity = if_abap_behv_message=>severity-error )
                                                             %state_area = 'VALIDATE_COMPONENT'
-                        %element-Title = if_abap_behv=>mk-on
+                        %element-Priority = if_abap_behv=>mk-on
                                ) TO reported-incident.
 
       ENDIF.
@@ -379,7 +406,7 @@ CLASS lhc_Incident IMPLEMENTATION.
                         %msg = NEW zcl_incident_messages_770( textid   = zcl_incident_messages_770=>status_initial
                                                             severity = if_abap_behv_message=>severity-error )
                                                             %state_area = 'VALIDATE_COMPONENT'
-                        %element-Title = if_abap_behv=>mk-on
+                        %element-Status = if_abap_behv=>mk-on
                                ) TO reported-incident.
 
       ENDIF.
@@ -391,7 +418,7 @@ CLASS lhc_Incident IMPLEMENTATION.
                         %msg = NEW zcl_incident_messages_770( textid   = zcl_incident_messages_770=>creationdate_initial
                                                             severity = if_abap_behv_message=>severity-error )
                                                             %state_area = 'VALIDATE_DATES'
-                        %element-Title = if_abap_behv=>mk-on
+                        %element-CreationDate = if_abap_behv=>mk-on
                                ) TO reported-incident.
 
       ENDIF.
@@ -409,7 +436,7 @@ CLASS lhc_Incident IMPLEMENTATION.
            RESULT DATA(incidents).
 
     LOOP AT incidents INTO DATA(incident).
-
+      "Manda mensaje de error en fecha de creación inicial
       IF incident-CreationDate IS INITIAL.
         APPEND VALUE #( %tky = incident-%tky ) TO failed-incident.
 
@@ -417,12 +444,21 @@ CLASS lhc_Incident IMPLEMENTATION.
                         %msg = NEW zcl_incident_messages_770( textid   = zcl_incident_messages_770=>creationdate_initial
                                                             severity = if_abap_behv_message=>severity-error )
                                                             %state_area = 'VALIDATE_DATES'
-                        %element-Title = if_abap_behv=>mk-on
+                        %element-CreationDate = if_abap_behv=>mk-on
                                ) TO reported-incident.
-
       ENDIF.
 
+      "Manda mensaje de error en fecha de creación mayor a fecha del día
+      IF incident-CreationDate > cl_abap_context_info=>get_system_date( ).
+        APPEND VALUE #( %tky        = incident-%tky
+                      %msg = NEW zcl_incident_messages_770( textid   = zcl_incident_messages_770=>creationdate_initial
+                                                          severity = if_abap_behv_message=>severity-error )
+                                                          %state_area = 'VALIDATE_DATES'
+                      %element-CreationDate = if_abap_behv=>mk-on
+                             ) TO reported-incident.
+      ENDIF.
 
+      "Manda mensaje de error en fecha de actualización no puede ser menor a fecha de creación
       IF incident-ChangedDate < incident-CreationDate AND
          incident-ChangedDate IS NOT INITIAL AND
          incident-CreationDate IS NOT INITIAL.
@@ -432,8 +468,8 @@ CLASS lhc_Incident IMPLEMENTATION.
         APPEND VALUE #( %tky = incident-%tky
                         %state_area = 'VALIDATE_DATES'
                         %msg = NEW zcl_incident_messages_770( textid      = zcl_incident_messages_770=>ChangedDate_invalid
-                                                            ChangedDate    = incident-ChangedDate
-                                                            severity    = if_abap_behv_message=>severity-error )
+                                                            ChangedDate   = incident-ChangedDate
+                                                            severity      = if_abap_behv_message=>severity-error )
                         %element-ChangedDate = if_abap_behv=>mk-on
                           ) TO reported-incident.
 
