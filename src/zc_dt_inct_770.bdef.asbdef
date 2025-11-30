@@ -24,7 +24,7 @@ use etag
 define behavior for ZC_DT_INCT_H_770 alias History
 {
   //  use update;
-  //  use delete;
+//    use delete;
 
   use association _Incident { with draft; }
 }

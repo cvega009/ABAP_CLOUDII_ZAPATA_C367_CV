@@ -79,222 +79,66 @@ CLASS zcl_incident_messages_770 DEFINITION
       BEGIN OF CreationDate_invalid,
         msgid TYPE symsgid VALUE 'ZMC_INCT_MESSAGE_770',
         msgno TYPE symsgno VALUE '007',
+        attr1 TYPE scx_attrname VALUE 'MV_CREATION_DATE',
+        attr2 TYPE scx_attrname VALUE 'MV_SYDATUM',
+        attr3 TYPE scx_attrname VALUE '',
+        attr4 TYPE scx_attrname VALUE '',
+      END OF CreationDate_invalid,
+
+      BEGIN OF validate_date,
+        msgid TYPE symsgid VALUE 'ZMC_INCT_MESSAGE_770',
+        msgno TYPE symsgno VALUE '008',
+        attr1 TYPE scx_attrname VALUE 'MV_CREATION_DATE',
+        attr2 TYPE scx_attrname VALUE 'MV_CHANGE_DATE',
+        attr3 TYPE scx_attrname VALUE '',
+        attr4 TYPE scx_attrname VALUE '',
+      END OF validate_date,
+
+      BEGIN OF validate_resp,
+        msgid TYPE symsgid VALUE 'ZMC_INCT_MESSAGE_770',
+        msgno TYPE symsgno VALUE '009',
         attr1 TYPE scx_attrname VALUE '',
         attr2 TYPE scx_attrname VALUE '',
         attr3 TYPE scx_attrname VALUE '',
         attr4 TYPE scx_attrname VALUE '',
-      END OF CreationDate_invalid.
+      END OF validate_resp,
 
-
-*      BEGIN OF enter_end_date,
-*        msgid TYPE symsgid VALUE 'ZMC_INCT_MESSAGE_770',
-*        msgno TYPE symsgno VALUE '008',
-*        attr1 TYPE scx_attrname VALUE '',
-*        attr2 TYPE scx_attrname VALUE '',
-*        attr3 TYPE scx_attrname VALUE '',
-*        attr4 TYPE scx_attrname VALUE '',
-*      END OF enter_end_date,
-*
-*      BEGIN OF enter_agency_id,
-*        msgid TYPE symsgid VALUE 'ZMC_INCT_MESSAGE_770',
-*        msgno TYPE symsgno VALUE '009',
-*        attr1 TYPE scx_attrname VALUE '',
-*        attr2 TYPE scx_attrname VALUE '',
-*        attr3 TYPE scx_attrname VALUE '',
-*        attr4 TYPE scx_attrname VALUE '',
-*      END OF enter_agency_id,
-*
-*      BEGIN OF enter_customer_id,
-*        msgid TYPE symsgid VALUE 'ZMC_INCT_MESSAGE_770',
-*        msgno TYPE symsgno VALUE '010',
-*        attr1 TYPE scx_attrname VALUE '',
-*        attr2 TYPE scx_attrname VALUE '',
-*        attr3 TYPE scx_attrname VALUE '',
-*        attr4 TYPE scx_attrname VALUE '',
-*      END OF enter_customer_id,
-*
-*      BEGIN OF enter_connection_id,
-*        msgid TYPE symsgid VALUE 'ZMC_INCT_MESSAGE_770',
-*        msgno TYPE symsgno VALUE '011',
-*        attr1 TYPE scx_attrname VALUE '',
-*        attr2 TYPE scx_attrname VALUE '',
-*        attr3 TYPE scx_attrname VALUE '',
-*        attr4 TYPE scx_attrname VALUE '',
-*      END OF enter_connection_id,
-*
-*      BEGIN OF no_flight_exists,
-*        msgid TYPE symsgid VALUE 'ZMC_INCT_MESSAGE_770',
-*        msgno TYPE symsgno VALUE '012',
-*        attr1 TYPE scx_attrname VALUE 'MV_CARRIER_ID',
-*        attr2 TYPE scx_attrname VALUE 'MV_FLIGHT_DATE',
-*        attr3 TYPE scx_attrname VALUE '',
-*        attr4 TYPE scx_attrname VALUE '',
-*      END OF no_flight_exists,
-*
-*      BEGIN OF supplement_unknown,
-*        msgid TYPE symsgid VALUE 'ZMC_INCT_MESSAGE_770',
-*        msgno TYPE symsgno VALUE '013',
-*        attr1 TYPE scx_attrname VALUE '',
-*        attr2 TYPE scx_attrname VALUE '',
-*        attr3 TYPE scx_attrname VALUE '',
-*        attr4 TYPE scx_attrname VALUE '',
-*      END OF supplement_unknown,
-*
-*      BEGIN OF enter_supplement_id,
-*        msgid TYPE symsgid VALUE 'ZMC_INCT_MESSAGE_770',
-*        msgno TYPE symsgno VALUE '014',
-*        attr1 TYPE scx_attrname VALUE '',
-*        attr2 TYPE scx_attrname VALUE '',
-*        attr3 TYPE scx_attrname VALUE '',
-*        attr4 TYPE scx_attrname VALUE '',
-*      END OF enter_supplement_id,
-*
-*      BEGIN OF enter_airline_id,
-*        msgid TYPE symsgid VALUE 'ZMC_INCT_MESSAGE_770',
-*        msgno TYPE symsgno VALUE '016',
-*        attr1 TYPE scx_attrname VALUE '',
-*        attr2 TYPE scx_attrname VALUE '',
-*        attr3 TYPE scx_attrname VALUE '',
-*        attr4 TYPE scx_attrname VALUE '',
-*      END OF enter_airline_id,
-*
-*      BEGIN OF enter_flight_date,
-*        msgid TYPE symsgid VALUE 'ZMC_INCT_MESSAGE_770',
-*        msgno TYPE symsgno VALUE '017',
-*        attr1 TYPE scx_attrname VALUE '',
-*        attr2 TYPE scx_attrname VALUE '',
-*        attr3 TYPE scx_attrname VALUE '',
-*        attr4 TYPE scx_attrname VALUE '',
-*      END OF enter_flight_date,
-*
-*      BEGIN OF not_sufficient_numbers,
-*        msgid TYPE symsgid VALUE 'ZMC_INCT_MESSAGE_770',
-*        msgno TYPE symsgno VALUE '018',
-*        attr1 TYPE scx_attrname VALUE '',
-*        attr2 TYPE scx_attrname VALUE '',
-*        attr3 TYPE scx_attrname VALUE '',
-*        attr4 TYPE scx_attrname VALUE '',
-*      END OF not_sufficient_numbers,
-*
-*      BEGIN OF number_range_depleted,
-*        msgid TYPE symsgid VALUE 'ZMC_INCT_MESSAGE_770',
-*        msgno TYPE symsgno VALUE '019',
-*        attr1 TYPE scx_attrname VALUE '',
-*        attr2 TYPE scx_attrname VALUE '',
-*        attr3 TYPE scx_attrname VALUE '',
-*        attr4 TYPE scx_attrname VALUE '',
-*      END OF number_range_depleted,
-*
-*      BEGIN OF not_authorized,
-*        msgid TYPE symsgid VALUE 'ZMC_INCT_MESSAGE_770',
-*        msgno TYPE symsgno VALUE '020',
-*        attr1 TYPE scx_attrname VALUE '',
-*        attr2 TYPE scx_attrname VALUE '',
-*        attr3 TYPE scx_attrname VALUE '',
-*        attr4 TYPE scx_attrname VALUE '',
-*      END OF not_authorized,
-*
-*      BEGIN OF not_authorized_for_agencyID,
-*        msgid TYPE symsgid VALUE 'ZMC_INCT_MESSAGE_770',
-*        msgno TYPE symsgno VALUE '021',
-*        attr1 TYPE scx_attrname VALUE '',
-*        attr2 TYPE scx_attrname VALUE '',
-*        attr3 TYPE scx_attrname VALUE '',
-*        attr4 TYPE scx_attrname VALUE '',
-*      END OF not_authorized_for_agencyID,
-*
-*      BEGIN OF currency_required,
-*        msgid TYPE symsgid VALUE 'ZMC_INCT_MESSAGE_770',
-*        msgno TYPE symsgno VALUE '022',
-*        attr1 TYPE scx_attrname VALUE '',
-*        attr2 TYPE scx_attrname VALUE '',
-*        attr3 TYPE scx_attrname VALUE '',
-*        attr4 TYPE scx_attrname VALUE '',
-*      END OF currency_required,
-*
-*      BEGIN OF currency_not_existing,
-*        msgid TYPE symsgid VALUE 'ZMC_INCT_MESSAGE_770',
-*        msgno TYPE symsgno VALUE '023',
-*        attr1 TYPE scx_attrname VALUE 'MV_CURRENCY_CODE',
-*        attr2 TYPE scx_attrname VALUE '',
-*        attr3 TYPE scx_attrname VALUE '',
-*        attr4 TYPE scx_attrname VALUE '',
-*      END OF currency_not_existing,
-*
-*      BEGIN OF booking_fee_invalid,
-*        msgid TYPE symsgid VALUE 'ZMC_INCT_MESSAGE_770',
-*        msgno TYPE symsgno VALUE '024',
-*        attr1 TYPE scx_attrname VALUE '',
-*        attr2 TYPE scx_attrname VALUE '',
-*        attr3 TYPE scx_attrname VALUE '',
-*        attr4 TYPE scx_attrname VALUE '',
-*      END OF booking_fee_invalid,
-*
-*      BEGIN OF flight_price_invalid,
-*        msgid TYPE symsgid VALUE 'ZMC_INCT_MESSAGE_770',
-*        msgno TYPE symsgno VALUE '025',
-*        attr1 TYPE scx_attrname VALUE '',
-*        attr2 TYPE scx_attrname VALUE '',
-*        attr3 TYPE scx_attrname VALUE '',
-*        attr4 TYPE scx_attrname VALUE '',
-*      END OF flight_price_invalid,
-*
-*      BEGIN OF suppl_price_invalid,
-*        msgid TYPE symsgid VALUE 'ZMC_INCT_MESSAGE_770',
-*        msgno TYPE symsgno VALUE '026',
-*        attr1 TYPE scx_attrname VALUE '',
-*        attr2 TYPE scx_attrname VALUE '',
-*        attr3 TYPE scx_attrname VALUE '',
-*        attr4 TYPE scx_attrname VALUE '',
-*      END OF suppl_price_invalid.
-
+      BEGIN OF validate_auto,
+        msgid TYPE symsgid VALUE 'ZMC_INCT_MESSAGE_770',
+        msgno TYPE symsgno VALUE '010',
+        attr1 TYPE scx_attrname VALUE '',
+        attr2 TYPE scx_attrname VALUE '',
+        attr3 TYPE scx_attrname VALUE '',
+        attr4 TYPE scx_attrname VALUE '',
+      END OF validate_auto.
 
     METHODS constructor
       IMPORTING
-        textid      LIKE if_t100_message=>t100key OPTIONAL
-        attr1       TYPE string OPTIONAL
-        attr2       TYPE string OPTIONAL
-        attr3       TYPE string OPTIONAL
-        attr4       TYPE string OPTIONAL
-        previous    LIKE previous OPTIONAL
-*        travel_id             TYPE /dmo/travel_id OPTIONAL
-*        booking_id            TYPE /dmo/booking_id OPTIONAL
-*        booking_supplement_id TYPE /dmo/booking_supplement_id OPTIONAL
-*        agency_id             TYPE /dmo/agency_id OPTIONAL
-*        customer_id           TYPE /dmo/customer_id OPTIONAL
-*        carrier_id            TYPE /dmo/carrier-carrier_id OPTIONAL
-*        connection_id         TYPE /dmo/connection-connection_id OPTIONAL
-*        supplement_id         TYPE /dmo/supplement-supplement_id OPTIONAL
-        changeddate TYPE /dmo/begin_date OPTIONAL
-*        end_date              TYPE /dmo/end_date OPTIONAL
-*        booking_date          TYPE /dmo/booking_date OPTIONAL
-*        flight_date           TYPE /dmo/flight_date OPTIONAL
-        status      TYPE zde_status2_770 OPTIONAL
-*        currency_code         TYPE /dmo/currency_code OPTIONAL
-        severity    TYPE if_abap_behv_message=>t_severity OPTIONAL
-        uname       TYPE syuname OPTIONAL.
+        textid        LIKE if_t100_message=>t100key OPTIONAL
+        attr1         TYPE string OPTIONAL
+        attr2         TYPE string OPTIONAL
+        attr3         TYPE string OPTIONAL
+        attr4         TYPE string OPTIONAL
+        previous      LIKE previous OPTIONAL
+        sydatum       TYPE /dmo/begin_date OPTIONAL
+        changeddate   TYPE /dmo/begin_date OPTIONAL
+        creation_date TYPE /dmo/begin_date OPTIONAL
+        change_date   TYPE /dmo/begin_date OPTIONAL
+        status        TYPE zde_status2_770 OPTIONAL
+        severity      TYPE if_abap_behv_message=>t_severity OPTIONAL
+        uname         TYPE syuname OPTIONAL.
 
 
     DATA:
-      mv_attr1       TYPE string,
-      mv_attr2       TYPE string,
-      mv_attr3       TYPE string,
-      mv_attr4       TYPE string,
-*      mv_travel_id             TYPE /dmo/travel_id,
-*      mv_booking_id            TYPE /dmo/booking_id,
-*      mv_booking_supplement_id TYPE /dmo/booking_supplement_id,
-*      mv_agency_id             TYPE /dmo/agency_id,
-*      mv_customer_id           TYPE /dmo/customer_id,
-*      mv_carrier_id            TYPE /dmo/carrier-carrier_id,
-*      mv_connection_id         TYPE /dmo/connection-connection_id,
-*      mv_supplement_id         TYPE /dmo/supplement-supplement_id,
-      mv_CHANGEDDATE TYPE /dmo/begin_date,
-*      mv_end_date              TYPE /dmo/end_date,
-*      mv_booking_date          TYPE /dmo/booking_date,
-*      mv_flight_date           TYPE /dmo/flight_date,
-      mv_status      TYPE zde_status2_770,
-*      mv_currency_code         TYPE /dmo/currency_code,
-      mv_uname       TYPE syuname.
+      mv_attr1         TYPE string,
+      mv_attr2         TYPE string,
+      mv_attr3         TYPE string,
+      mv_attr4         TYPE string,
+      mv_creation_date TYPE /dmo/begin_date,
+      mv_change_date   TYPE /dmo/begin_date,
+      mv_sydatum       TYPE /dmo/begin_date,
+      mv_status        TYPE zde_status2_770,
+      mv_uname         TYPE syuname.
 
 
   PROTECTED SECTION.
@@ -313,20 +157,10 @@ CLASS zcl_incident_messages_770 IMPLEMENTATION.
     me->mv_attr2                 = attr2.
     me->mv_attr3                 = attr3.
     me->mv_attr4                 = attr4.
-*    me->mv_travel_id             = travel_id.
-*    me->mv_booking_id            = booking_id.
-*    me->mv_booking_supplement_id = booking_supplement_id.
-*    me->mv_agency_id             = agency_id.
-*    me->mv_customer_id           = customer_id.
-*    me->mv_carrier_id            = carrier_id.
-*    me->mv_connection_id         = connection_id.
-*    me->mv_supplement_id         = supplement_id.
-*    me->mv_begin_date            = begin_date.
-*    me->mv_end_date              = end_date.
-*    me->mv_booking_date          = booking_date.
-*    me->mv_flight_date           = flight_date.
     me->mv_status                = status.
-*    me->mv_currency_code         = currency_code.
+    me->mv_creation_date         = creation_date.
+    me->mv_change_date           = change_date.
+    me->mv_sydatum               = sydatum.
     me->mv_uname                 = uname.
 
 

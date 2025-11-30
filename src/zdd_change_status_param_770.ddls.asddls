@@ -7,7 +7,10 @@ define abstract entity ZDD_CHANGE_STATUS_PARAM_770
       entity.element: 'StatusCode',
       useForValidation: true
     } ]
-  status : zde_status2_lgl;
+  status      : zde_status2_lgl;
   @EndUserText.label: 'Add Observation Text'
-  text   : zde_text_lgl;
+  text        : zde_text_lgl;
+  
+  @EndUserText.label: 'Responsable'
+  responsable : zde_text_770;
 }

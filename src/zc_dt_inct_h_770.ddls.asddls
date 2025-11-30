@@ -17,6 +17,9 @@ define view entity ZC_DT_INCT_H_770
       _StatusNS.StatusDescription as StatusDescriptionNS,
 
       Text,
+
+      Responsable,
+
       LocalCreatedBy,
       LocalCreatedAt,
       LocalLastChangedBy,

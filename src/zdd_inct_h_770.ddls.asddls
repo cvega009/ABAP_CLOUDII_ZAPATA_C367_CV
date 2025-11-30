@@ -21,6 +21,8 @@ define view entity ZDD_INCT_H_770
       previous_status       as PreviousStatus,
       new_status            as NewStatus,
       text                  as Text,
+      @EndUserText.label: 'Responsable'
+      responsable           as Responsable,
       local_created_by      as LocalCreatedBy,
       local_created_at      as LocalCreatedAt,
       local_last_changed_by as LocalLastChangedBy,

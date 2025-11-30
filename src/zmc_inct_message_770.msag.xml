@@ -56,7 +56,22 @@
     <item>
      <SPRSL>E</SPRSL>
      <MSGNR>007</MSGNR>
-     <TEXT>La fecha de creación no puede ser una fecha futura</TEXT>
+     <TEXT>La fecha de creación &amp;1 no puede ser mayor a la fecha del actual &amp;2</TEXT>
+    </item>
+    <item>
+     <SPRSL>E</SPRSL>
+     <MSGNR>008</MSGNR>
+     <TEXT>Fecha de creación &amp;1 no puede ser mayor a la fecha de actualización  &amp;2</TEXT>
+    </item>
+    <item>
+     <SPRSL>E</SPRSL>
+     <MSGNR>009</MSGNR>
+     <TEXT>En estado IN Progress (IP), asignar un responsable</TEXT>
+    </item>
+    <item>
+     <SPRSL>E</SPRSL>
+     <MSGNR>010</MSGNR>
+     <TEXT>Sólo el responsable o administrador puede cambiar el estado</TEXT>
     </item>
    </T100_TEXTS>
   </asx:values>

@@ -29,13 +29,10 @@ authorization master ( global, instance )
   field ( numbering : managed )
   IncUUID;
 
-  //Campos obligatorios
-//  field ( mandatory ) title, Description, Priority;
-//field ( mandatory ) title, Description, Priority; //Obligatorio en create
-//field ( readonly:update ) title, Description, Priority;  //Solo lectura en update
+  //Campos obligatorios:
+  field ( mandatory ) title, description, priority;
 
-field ( mandatory ) title, description, priority;
-
+  field ( features : instance ) Title, Description, Priority;
 
   action ( features : instance, authorization : update ) changeStatus
     parameter zdd_change_status_param_770 result [1] $self;
@@ -46,7 +43,7 @@ field ( mandatory ) title, description, priority;
   validation validateData on save { create; field Title, Description, Priority, Status, CreationDate; }
   validation validateDataRange on save { create; field CreationDate, ChangedDate; }
 
-  ////Validación en la Acción
+  //Determinaciones
   determine action validateDataDA { validation validateData; }
   determine action validateDataRangeDA { validation validateDataRange; }
 
@@ -106,6 +103,10 @@ etag master LocalLastChangedAt
   field ( numbering : managed )
   HisUUID;
 
+
+//field (features : instance) Text, Responsable, PreviousStatus, NewStatus, HisID;
+
+
   field ( readonly )
   HisUUID,
   IncUUID,
@@ -123,6 +124,7 @@ etag master LocalLastChangedAt
       PreviousStatus     = previous_status;
       NewStatus          = new_status;
       Text               = text;
+      Responsable        = responsable;
       LocalCreatedBy     = local_created_by;
       LocalCreatedAt     = local_created_at;
       LocalLastChangedBy = local_last_changed_by;
