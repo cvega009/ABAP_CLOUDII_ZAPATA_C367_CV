@@ -61,8 +61,6 @@ CLASS lhc_Incident IMPLEMENTATION.
     ENDIF.
 
     DATA(lv_technical_name) = cl_abap_context_info=>get_user_technical_name(  ).
-
-
 *lv_technical_name = |TEST|.
 
     IF lv_technical_name EQ 'CB9980002770'.
@@ -238,7 +236,6 @@ CLASS lhc_Incident IMPLEMENTATION.
 
     FREE incidents. " Free entries in incidents
 
-*TRY.
     MODIFY ENTITIES OF zr_dt_inct_770 IN LOCAL MODE
      ENTITY Incident
      CREATE BY \_History FIELDS ( HisUUID
@@ -254,10 +251,7 @@ CLASS lhc_Incident IMPLEMENTATION.
      MAPPED mapped
      FAILED failed
      REPORTED reported.
-*  CATCH cx_root INTO DATA(lo_ref).
-    "Se puede agregar otro mensaje
-*    DATA(lv_mensaje) = lo_ref->get_text( ).
-*ENDTRY.
+
 
 ** Read root entity entries updated
     READ ENTITIES OF zr_dt_inct_770 IN LOCAL MODE
