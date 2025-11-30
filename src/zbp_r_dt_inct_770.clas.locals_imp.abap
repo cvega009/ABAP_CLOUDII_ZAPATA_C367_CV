@@ -273,7 +273,6 @@ CLASS lhc_Incident IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD setHistory.
-
 ** Declaration of necessary variables
     DATA: lt_updated_root_entity TYPE TABLE FOR UPDATE zr_dt_inct_770,
           lt_association_entity  TYPE TABLE FOR CREATE zr_dt_inct_770\_History,

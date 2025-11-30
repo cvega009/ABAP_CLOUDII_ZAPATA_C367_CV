@@ -37,7 +37,6 @@ authorization master ( global, instance )
   action ( features : instance, authorization : update ) changeStatus
     parameter zdd_change_status_param_770 result [1] $self;
 
-  internal action setHistory;
 
   //Validaciones - Validación en Múltiples Campos
   validation validateData on save { create; field Title, Description, Priority, Status, CreationDate; }
@@ -49,6 +48,10 @@ authorization master ( global, instance )
 
   determination setDefaultHistory on save { create; }
   determination setDefaultValues on modify { create; }
+
+  //Internal action
+  internal action setHistory;
+
 
   //Efectos secundarios
   side effects
@@ -102,9 +105,6 @@ etag master LocalLastChangedAt
 
   field ( numbering : managed )
   HisUUID;
-
-
-//field (features : instance) Text, Responsable, PreviousStatus, NewStatus, HisID;
 
 
   field ( readonly )
