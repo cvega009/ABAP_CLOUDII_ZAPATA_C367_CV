@@ -60,6 +60,16 @@ CLASS lhc_Incident IMPLEMENTATION.
       lv_history_index = 1.
     ENDIF.
 
+    DATA(lv_technical_name) = cl_abap_context_info=>get_user_technical_name(  ).
+
+
+*lv_technical_name = |TEST|.
+
+    IF lv_technical_name EQ 'CB9980002770'.
+      DATA(lv_activo) = abap_true.
+    ELSE.
+      lv_activo = abap_false.
+    ENDIF.
 
     result = VALUE #( FOR incident IN incidents
                           ( %tky                   = incident-%tky
@@ -81,6 +91,11 @@ CLASS lhc_Incident IMPLEMENTATION.
                                                                   incident-Status = mc_status-canceled  OR
                                                                   lv_history_index = 0
                                                              THEN if_abap_behv=>fc-o-disabled
+
+                                                            when incident-Status = mc_status-in_progress AND
+                                                                   lv_activo = abap_false
+                                                                    THEN if_abap_behv=>fc-o-disabled
+
                                                              ELSE if_abap_behv=>fc-o-enabled )
 
                             %assoc-_History       = COND #( WHEN incident-Status = mc_status-completed OR
@@ -379,56 +394,6 @@ CLASS lhc_Incident IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD get_instance_authorizations.
-
-
-    DATA: update_requested TYPE abap_bool,
-          update_granted   TYPE abap_bool.
-
-
-    READ ENTITIES OF zr_dt_inct_770 IN LOCAL MODE
-         ENTITY Incident
-         FIELDS ( IncidentID )
-         WITH CORRESPONDING #( keys )
-         RESULT DATA(incidents)
-         FAILED failed.
-
-    update_requested = COND #( WHEN requested_authorizations-%update      = if_abap_behv=>mk-on
-                                 OR requested_authorizations-%action-Edit = if_abap_behv=>mk-on
-                               THEN abap_true
-                               ELSE abap_false ).
-
-
-    DATA(lv_technical_name) = cl_abap_context_info=>get_user_technical_name(  ).
-
-    LOOP AT incidents INTO DATA(incident).
-*
-      IF incident-Status EQ mc_status-in_progress AND
-         update_requested EQ abap_true.
-        IF lv_technical_name EQ 'CB9980002770'.
-          update_granted = abap_true.
-        ELSE.
-          update_granted = abap_false.
-
-          APPEND VALUE #( %tky = incident-%tky
-                          %msg = NEW zcl_incident_messages_770( textid  = zcl_incident_messages_770=>validate_auto
-                                                              severity  = if_abap_behv_message=>severity-error ) )
-                               TO reported-incident.
-        ENDIF.
-      ELSE.
-        update_granted = abap_true.
-      ENDIF.
-
-      APPEND VALUE #( LET upd_auth = COND #( WHEN update_granted EQ abap_true
-                                             THEN if_abap_behv=>auth-allowed
-                                             ELSE if_abap_behv=>auth-unauthorized )
-                      IN
-                      %tky         = incident-%tky
-                      %update      = upd_auth
-                      %action-Edit = upd_auth
-                      ) TO result.
-
-    ENDLOOP.
-
 
   ENDMETHOD.
 
